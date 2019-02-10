@@ -1,9 +1,12 @@
 {
-  "name": "fb-script",
-  "version": "0.0.1",
-  "main": "index.js",
+  "name": "@functional-bitcoin/agent",
+  "version": "0.0.1-beta.1",
+  "repository": "github:functional-bitcoin/cli",
   "license": "MIT",
+  "main": "lib/index.js",
   "dependencies": {
-    "axios": "^0.18.0"
+    "axios": "^0.18.0",
+    "co": "^4.6.0",
+    "vm2": "^3.6.10"
   }
 }
