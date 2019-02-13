@@ -15,7 +15,7 @@ $ yarn add @functional-bitcoin/agent@beta
 ```javascript
 const fbAgent = require('@functional-bitcoin/agent')
 
-fbAgent.loadScript(txid)
+fbAgent.runScript(txid)
   .on('load:script', (script, tx) => {
     // Callback after script TX has been loaded
     // `script.tx` contains the whole tx so is possible to
@@ -24,11 +24,6 @@ fbAgent.loadScript(txid)
   .on('load:functions', (script, funcs) => {
     // Callback after all functions have been loaded,
     // but prior to script being validated
-  })
-  .on('ready', (script) => {
-    // Callback after script has been validated and is
-    // ready to execute. Must manually execute.
-    script.execute()
   })
   .on('success', (script, res) => {
     console.log('Result:', res)
@@ -50,14 +45,11 @@ const prefixTransforms = {
 
 }
 
-fbAgent.loadScript(txid)
+fbAgent.runScript(txid)
   .on('load:script', (script) => {
     script.stack
       .filter(ln => Object.keys(prefixTransforms).includes(ln.cmd))
       .forEach(ln => ln.cmd = prefixTransforms[ln.cmd])
-  })
-  .on('ready', (script) => {
-    script.execute()
   })
   .on('success', (script) => {
     console.log('B:// file:', script.result)
@@ -68,21 +60,19 @@ fbAgent.loadScript(txid)
 
 Functions are executed within a sandboxed node VM, which by default has access to very little of the agent's environment. A function cannot access environment variables, or overwrite global functions.
 
-It is expected that functions remain small, simple and self contained, and the agent application itself be responsible for handling and responding to the ourput of a script.
+It is expected that functions remain small, simple and self contained, and the agent application itself be responsible for handling and responding to the output of a script.
 
 However, it is possible to manually expose objects to the sandbox, and so opt-in to sharing external libraries and environment variables with the functions executed within a script.
 
 ```javascript
-const axios = require('axios')
+const datapay = require('datapay')
 
-fbAgent.config.env.axios = axios;
+fbAgent.config.env.datapay = datapay;
 fbAgent.config.env.privKey = process.env.PRIVATE_KEY;
 
-fbAgent.loadScript(txid)
-// functions can now access `env.axios` and `env.privKey`
+// functions can now access `env.datapay` and `env.privKey`
+fbAgent.runScript(txid)
 ```
 
 Using this approach it is entirely possible for a function to create a new transaction, and for multiple agents to autonomously interract by sending scripts to one another.
-
-
 
