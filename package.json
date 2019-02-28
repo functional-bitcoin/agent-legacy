@@ -1,6 +1,6 @@
 {
   "name": "@functional-bitcoin/agent",
-  "version": "0.0.1-beta.8",
+  "version": "0.0.1-beta.9",
   "repository": "github:functional-bitcoin/cli",
   "license": "MIT",
   "main": "lib/index.js",
