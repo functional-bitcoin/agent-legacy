@@ -7,6 +7,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "co": "^4.6.0",
+    "deepmerge": "^3.2.0",
     "eventsource": "^1.0.7",
     "redis": "^2.8.0",
     "vm2": "^3.6.10"
