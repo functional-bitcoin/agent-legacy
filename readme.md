@@ -2,6 +2,8 @@
 
 # Functional Bitcoin :: Agent
 
+🚨 **Alert: This repository is for the legacy JavaScript-based agent, which is not being actively developed right now.**
+
 A node module for fetching and executing Functional Bitcoin scripts.
 
 ## Installation
