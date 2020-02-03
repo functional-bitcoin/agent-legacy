@@ -1,6 +1,6 @@
 {
   "name": "@functional-bitcoin/agent",
-  "version": "0.0.1-beta.20",
+  "version": "0.0.1-beta.21",
   "repository": "github:functional-bitcoin/agent-lgeacy",
   "license": "MIT",
   "main": "lib/index.js",
